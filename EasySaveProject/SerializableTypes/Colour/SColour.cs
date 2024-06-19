@@ -6,14 +6,14 @@ using UnityEngine;
 namespace NEG.Plugins.EasySave.SerializableTypes.Colour;
 
 [Serializable]
-public readonly struct SColour : ISaveable
+public struct SColour : ISaveable
 {
 	[JsonConstructor]
 	public SColour(
-		[JsonProperty("R")] float _r,
-		[JsonProperty("G")] float _g,
-		[JsonProperty("B")] float _b,
-		[JsonProperty("A")] float _a)
+		float _r,
+		float _g,
+		float _b,
+		float _a)
 	{
 		R = _r;
 		G = _g;
@@ -31,19 +31,19 @@ public readonly struct SColour : ISaveable
 	/// <summary>
 	/// Red channel
 	/// </summary>
-	public readonly float R { get; }
+	public float R { get; set; }
 	/// <summary>
 	/// Green channel
 	/// </summary>
-	public readonly float G { get; }
+	public float G { get; set; }
 	/// <summary>
 	/// Blue channel
 	/// </summary>
-	public readonly float B { get; }
+	public float B { get; set; }
 	/// <summary>
 	/// Alpha Channel
 	/// </summary>
-	public readonly float A { get; }
+	public float A { get; set; }
 
 	public Color GetColour()
 	{

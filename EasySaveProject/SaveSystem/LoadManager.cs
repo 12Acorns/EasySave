@@ -19,14 +19,16 @@ public sealed class LoadManager
 {
 	private const string JSON = ".json";
 
-	public LoadManager(ApplicationPath _applicationPath)
+	public LoadManager(ApplicationPath _applicationPath, JsonSerializerSettings? _serializeSettings = null)
 	{
 		ApplicationPath = _applicationPath;
+		serializeSettings = _serializeSettings;
 	}
 
 	public static LoadManager Instance { get; } = new(ApplicationPath.Instance);
 
 	public ApplicationPath ApplicationPath { get; }
+	private readonly JsonSerializerSettings? serializeSettings;
 
 	/// <summary>
 	/// 
@@ -154,12 +156,22 @@ public sealed class LoadManager
 		}
 		return true;
 	}
-	private static OneOf<File, LoadOutputResponce> TryDeserializeFile<File>(string _fileContents)
+	private OneOf<File, LoadOutputResponce> TryDeserializeFile<File>(string _fileContents)
 		where File : ISaveable
 	{
 		try
 		{
-			var _outputFile = JsonConvert.DeserializeObject<File>(_fileContents);
+			File? _outputFile = default;
+
+			if(serializeSettings == null)
+			{
+				_outputFile = JsonConvert.DeserializeObject<File>(_fileContents, serializeSettings);
+			}
+			else
+			{
+				_outputFile = JsonConvert.DeserializeObject<File>(_fileContents);
+			}
+
 			if(_outputFile == null)
 			{
 				return LoadOutputResponce.BadFile;

@@ -6,14 +6,13 @@ using UnityEngine;
 namespace NEG.Plugins.EasySave.SerializableTypes.Vector;
 
 [Serializable]
-[JsonObject(MemberSerialization.Fields)]
-public readonly struct SVector3 : ISaveable
+public struct SVector3 : ISaveable
 {
 	[JsonConstructor]
 	public SVector3(
-		[JsonProperty("X")] float _x,
-		[JsonProperty("Y")] float _y,
-		[JsonProperty("Z")] float _z)
+		float _x,
+		float _y,
+		float _z)
 	{
 		X = _x;
 		Y = _y;
@@ -26,9 +25,12 @@ public readonly struct SVector3 : ISaveable
 		Z = _vector.z;
 	}
 
-	public readonly float X { get; }
-	public readonly float Y { get; }
-	public readonly float Z { get; }
+	[JsonProperty]
+	public float X { get; set; }
+	[JsonProperty]
+	public float Y { get; set; }
+	[JsonProperty]
+	public float Z { get; set; }
 
 	public Vector3 GetVector()
 	{
