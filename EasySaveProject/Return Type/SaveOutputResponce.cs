@@ -1,11 +1,10 @@
-namespace NEG.Plugins.EasySave
+namespace NEG.Plugins.EasySave.ReturnType;
+
+public enum SaveOutputResponce
 {
-    public enum SaveOutputResponce
-    {
-        Success,
-        FileIOFailure,
-        PathConcatenationFailure,
-        InvalidArguments,
-		BadStream,
-	}
+	Success,
+	FileIOFailure,
+	PathConcatenationFailure,
+	InvalidArguments,
+	BadStream,
 }

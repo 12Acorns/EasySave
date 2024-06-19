@@ -1,4 +1,3 @@
-namespace NEG.Plugins.EasySave.Data
-{
-	public interface ISaveable { }
-}
+namespace NEG.Plugins.EasySave.Data;
+
+public interface ISaveable { }

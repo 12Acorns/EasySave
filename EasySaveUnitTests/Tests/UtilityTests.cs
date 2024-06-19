@@ -1,5 +1,5 @@
-using NEG.Plugins.EasySave.Utility;
 using EasySaveUnitTest.Utility;
+using NEG.Plugins.EasySave.Utility;
 
 namespace NEG.Plugins.EasySave.Tests;
 
@@ -31,21 +31,21 @@ internal sealed class UtilityTests
 	private readonly IReadOnlyList<string> testPassDirectories =
 	[
 		$"{userPath}\\TestDir",
-            $"{userPath}\\Dir",
-            $"{userPath}\\Dir\\DeeperDir",
-            $"{userPath}\\Doijhdfsaoipoh\\DeeperDir\\",
-        ];
+			$"{userPath}\\Dir",
+			$"{userPath}\\Dir\\DeeperDir",
+			$"{userPath}\\Doijhdfsaoipoh\\DeeperDir\\",
+		];
 	private readonly IReadOnlyList<string> testFailDirectories =
 	[
 		$"{userPath}\\Doijhdfsaoipoh\\DeeperDir\0",
 		$"{userPath}\\Doijhdfsaoipoh\\..>",
 		"Dingleberry",
 		"C::",
-            "NUL",
-            "NULL",
-            "CON",
-            "AUX",
-        ];
+			"NUL",
+			"NULL",
+			"CON",
+			"AUX",
+		];
 
 	[Test(Author = "12Acorns", Description = "", TestOf = typeof(FileUtility))]
 	public void ValidFileValidationTest()
@@ -66,10 +66,10 @@ internal sealed class UtilityTests
 
 	[Test(Author = "12Acorns", Description = "", TestOf = typeof(DirectoryUtility))]
 	public void ValidDirectoryValidationTest()
-    {
-        foreach(var _test in testPassDirectories)
-        {
-            Assert.That(DirectoryUtility.TryCreateDirectory(_test, out _), Is.True);
+	{
+		foreach(var _test in testPassDirectories)
+		{
+			Assert.That(DirectoryUtility.TryCreateDirectory(_test, out _), Is.True);
 		}
 		try
 		{
